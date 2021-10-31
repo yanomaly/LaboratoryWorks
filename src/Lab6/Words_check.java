@@ -14,7 +14,7 @@ public class Words_check {
     Vector<Integer> strings = new Vector<>();
 
     public void read() throws IOException {
-        BufferedReader input_stream = new BufferedReader(new FileReader("C:\\Users\\famil\\IdeaProjects\\Programming\\src\\Lab6\\Resources\\Inp"));
+        BufferedReader input_stream = new BufferedReader(new FileReader("C:\\Users\\famil\\IdeaProjects\\Programming\\src\\Lab6\\Lab7.Resources\\Inp"));
         String input_temp = input_stream.readLine();
         while(input_temp != null) {
             data.add(input_temp);

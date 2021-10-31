@@ -14,7 +14,7 @@ public class Task7_2 {
 
     public static void read_input(Vector<String> input) throws IOException {
         //считывание из файла
-        BufferedReader input_stream = new BufferedReader(new FileReader("src/Lab3/Resources/input.txt"));
+        BufferedReader input_stream = new BufferedReader(new FileReader("src/Lab3/Lab7.Resources/input.txt"));
         String input_temp = input_stream.readLine();
         while(input_temp != null) {
             input.add(input_temp);

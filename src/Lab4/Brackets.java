@@ -13,7 +13,7 @@ public class Brackets {
 
     public void read() throws IOException {
         //считывание из файла
-        BufferedReader input_stream = new BufferedReader(new FileReader("src/Lab4/Resources/input.txt"));
+        BufferedReader input_stream = new BufferedReader(new FileReader("src/Lab4/Lab7.Resources/input.txt"));
         String input_temp = input_stream.readLine();
         while(input_temp != null) {
             data.add(input_temp);

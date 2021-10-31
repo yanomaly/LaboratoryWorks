@@ -13,7 +13,7 @@ public class Sequrity {
     static Vector<String> anti_encryption = new Vector<>();
 
     public static void read() throws IOException {
-        FileReader input_stream = new FileReader("C:\\Users\\famil\\IdeaProjects\\Programming\\src\\Lab6\\Resources\\Inp");
+        FileReader input_stream = new FileReader("C:\\Users\\famil\\IdeaProjects\\Programming\\src\\Lab6\\Lab7.Resources\\Inp");
         data.add((short)input_stream.read());
         while(input_stream.ready()) {
             data.add((short)input_stream.read());
