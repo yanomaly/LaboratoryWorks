@@ -12,11 +12,14 @@ import java.util.regex.Pattern;
 public class LibraryV1 implements Serializable {
 
     static class User implements Serializable{
+        private Date craeted;
         private String name;
         private String hash_password;
         private Map<String, Date> books = new HashMap<String, Date>();
 
         public String getName() {return name;}
+
+        public Map<String, Date> getBooks() {return books;}
 
         public String getHash_password() {return hash_password;}
 
@@ -40,40 +43,92 @@ public class LibraryV1 implements Serializable {
             return hash_password;
         }
 
-        public static void unlock_user(){
-
+        public static void unlock_user(String[] args) throws NoSuchAlgorithmException {
+            Scanner sc = new Scanner(System.in);
+            System.out.println(rb.getString("user"));
+            String user = sc.nextLine();
+            for (User us: black_list) {
+                if(us.getName().compareTo(user) == 0) {
+                    black_list.remove(us);
+                    System.out.println(rb.getString("success"));
+                    break;
+                }
+            }
+            System.out.println(rb.getString("fail"));
+            show_menu(args);
         }
 
-        public static void add_book(){
-
+        public static void add_book(String[] args) throws NoSuchAlgorithmException {
+            Scanner sc = new Scanner(System.in);
+            System.out.println(rb.getString("book_name"));
+            String nm = sc.nextLine();
+            System.out.println(rb.getString("author"));
+            String author = sc.nextLine();
+            String pass_name = nm + " " + author;
+            int flag = 0;
+            for (String temp: books_list) {
+                if(pass_name.compareTo(temp) == 0)
+                    flag++;
+            }
+            if(flag == 0) {
+                books_list.add(pass_name);
+                System.out.println(rb.getString("success"));
+            }
+            else
+                System.out.println(rb.getString("fail"));
+            show_menu(args);
         }
     }
 
     private static ResourceBundle rb;
     private static Locale locale;
-    private static Integer statment;
+    private static Integer user_number;
+    private static Integer statment = 0;
     private static List<User> users = new ArrayList<>();
     private static List<Admin> admins = new ArrayList<>();
     private static List<User> black_list = new ArrayList<>();
     private static List<String> books_list = new ArrayList<>();
 
-    public static void give_book(){
+    public static void give_book(String[] args){
 
     }
 
-    public static void pick_book(){
-
+    public static void pick_book(String[] args) throws NoSuchAlgorithmException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(rb.getString("book_name"));
+        String nm = sc.nextLine();
+        System.out.println(rb.getString("author"));
+        String author = sc.nextLine();
+        String pass_name = nm + " " + author;
+        for (String name: users.get(user_number).getBooks().keySet()) {
+            if(pass_name.compareTo(name) == 0){
+                users.get(user_number).getBooks().remove(pass_name);
+                System.out.println(rb.getString("success"));
+                break;
+            }
+        }
+        show_menu(args);
     }
 
-    public static void show_list(){
-
+    public static void show_list(String[] args) throws NoSuchAlgorithmException {
+        System.out.println(rb.getString("list"));
+        for (String book: books_list)
+            System.out.println(book);
+        show_menu(args);
     }
 
-    public static void ban_user(){
-
+    public static void ban_user(String[] args) throws NoSuchAlgorithmException {
+        Date current_date = new Date();
+        for (User user: users) {
+            for (Date date: user.getBooks().values()) {
+                if(current_date.getTime() - date.getTime() > 1)
+                    black_list.add(user);
+            }
+        }
+        show_menu(args);
     }
 
-    public static void register(){
+    public static void register(String[] args) throws NoSuchAlgorithmException {
         Scanner sc = new Scanner(System.in);
         System.out.println(rb.getString("nickname"));
         String nicname;
@@ -108,9 +163,11 @@ public class LibraryV1 implements Serializable {
             }
         }
         users.add(new User(nicname, password));
+        user_number = users.size() - 1;
+        show_menu(args);
     }
 
-    public static void login() throws NoSuchAlgorithmException {
+    public static void login(String[] args) throws NoSuchAlgorithmException {
         Scanner sc = new Scanner(System.in);
         System.out.println(rb.getString("nickname"));
         String nicname = sc.nextLine();
@@ -131,18 +188,25 @@ public class LibraryV1 implements Serializable {
             if(nicname.compareTo(admin.getName()) == 0 && password.compareTo(admin.getHash_password()) == 0)
                 flaga++;
         }
-        if(flagu == 1)
-            menu(2);
-        if(flaga == 1)
-            menu(1);
+        if(flagu == 1) {
+            statment = 2;
+            show_menu(args);
+        }
+        if(flaga == 1){
+            statment = 2;
+            show_menu(args);
+        }
         if(flaga == 0 && flagu == 0) {
             System.out.println(rb.getString("wrong_input"));
-            menu(0);
+            statment = 0;
+            show_menu(args);
         }
+        user_number = users.indexOf(new User(nicname, password));
     }
 
     public static void show_menu(String[] args) throws NoSuchAlgorithmException {
         if(args.length > 1) {
+            ban_user(args);
             locale = new Locale(args[0], args[1]);
             rb = ResourceBundle.getBundle("Lab7.res.Interfa", locale);
             switch(statment){
@@ -156,7 +220,7 @@ public class LibraryV1 implements Serializable {
                     System.out.println(rb.getObject("app_menu_u"));
                     break;
             }
-            menu(statment);
+            menu(args);
         }
         else {
             System.out.println("Wrong locale!");
@@ -164,10 +228,9 @@ public class LibraryV1 implements Serializable {
         }
     }
 
-    public static void menu(Integer statment) throws NoSuchAlgorithmException {
+    public static void menu(String[] args) throws NoSuchAlgorithmException {
         Scanner sc = new Scanner(System.in);
         String command = sc.next();
-
         switch(statment){
             case(0):
                 switch(Integer.parseInt(command)){
@@ -175,10 +238,10 @@ public class LibraryV1 implements Serializable {
                         System.exit(0);
                         break;
                     case(1):
-                        register();
+                        register(args);
                         break;
                     case(2):
-                        login();
+                        login(args);
                         break;
                 }
                 break;
@@ -188,10 +251,13 @@ public class LibraryV1 implements Serializable {
                         System.exit(0);
                         break;
                     case(1):
-                        Admin.unlock_user();
+                        Admin.unlock_user(args);
                         break;
                     case(2):
-                        Admin.add_book();
+                        Admin.add_book(args);
+                        break;
+                    case(3):
+                        show_list(args);
                         break;
                 }
                 break;
@@ -201,10 +267,13 @@ public class LibraryV1 implements Serializable {
                         System.exit(0);
                         break;
                     case(1):
-                        give_book();
+                        give_book(args);
                         break;
                     case(2):
-                        pick_book();
+                        pick_book(args);
+                        break;
+                    case(3):
+                        show_list(args);
                         break;
                 }
                 break;
