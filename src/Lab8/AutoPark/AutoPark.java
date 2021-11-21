@@ -8,9 +8,9 @@ public interface AutoPark extends Serializable {
     void write() throws IOException;
     void ser_r() throws IOException, ClassNotFoundException;
     void ser_w() throws IOException;
-    void search(Object obj);
-    void add(Object obj);
-    void delete(Object obj);
-    void change(Object obj);
-    void show(Object obj);
+    void search();
+    void add(int param);
+    void delete(int param);
+    void change(int param);
+    void show(int param);
 }

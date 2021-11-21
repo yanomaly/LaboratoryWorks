@@ -1,13 +1,11 @@
 package Lab8.Entities;
 
-import java.io.Serializable;
+public class Car extends Entity {
 
-public class Cars extends Entity implements Serializable {
-
-    private static Integer number;
-    private static Double carrying;
-    private static String make;
-    private static String stock_mileage;
+    private Integer number;
+    private Double carrying;
+    private String make;
+    private String stock_mileage;
 
     @Override
     public String toString1(){
@@ -25,7 +23,7 @@ public class Cars extends Entity implements Serializable {
         return number;
     }
 
-    public Cars(String args){
+    public Car(String args){
         String[] arrgs = args.split(" ");
         number = Integer.parseInt(arrgs[0]);
         carrying = Double.parseDouble(arrgs[1]);
@@ -33,5 +31,5 @@ public class Cars extends Entity implements Serializable {
         stock_mileage = arrgs[3];
     }
 
-    public Cars(){}
+    public Car(){}
 }

@@ -1,16 +1,14 @@
 package Lab8.Entities;
 
-import java.io.Serializable;
+public class Driver extends Entity {
 
-public class Drivers extends Entity implements Serializable {
-
-    private static Integer number;
-    private static String surname;
-    private static String category;
-    private static Integer experience;
-    private static String address;
-    private static Double salary;
-    private static String birthday;
+    private Integer number;
+    private String surname;
+    private String category;
+    private Integer experience;
+    private String address;
+    private Double salary;
+    private String birthday;
 
     @Override
     public String toString1(){
@@ -35,7 +33,7 @@ public class Drivers extends Entity implements Serializable {
         return number;
     }
 
-    public Drivers(String args){
+    public Driver(String args){
         String[] arrgs = args.split(" ");
         number = Integer.parseInt(arrgs[0]);
         surname = arrgs[1];
@@ -45,6 +43,4 @@ public class Drivers extends Entity implements Serializable {
         salary = Double.parseDouble(arrgs[5]);
         birthday = arrgs[6];
     }
-
-    public Drivers(){}
 }

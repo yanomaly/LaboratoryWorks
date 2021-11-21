@@ -1,25 +1,21 @@
 package Lab8.Entities;
 
-import java.io.Serializable;
+public class Order extends Entity {
 
-public class Orders extends Entity implements Serializable {
-
-    private static Cars car;
-    private static Drivers driver;
-    private static Integer number = car.getNumber();
-    private static String surname = driver.getSurname();
-    private static String date;
-    private static Double weight;
-    private static Double distance;
-    private static Double cost;
-    private static String from;
-    private static String to;
-    private static Double customsTax;
-    private static Double fuelCost;
+    private Integer carNumber;
+    private String surname;
+    private String date;
+    private Double weight;
+    private Double distance;
+    private Double cost;
+    private String from;
+    private String to;
+    private Double customsTax;
+    private Double fuelCost;
 
     @Override
     public String toString1(){
-        return "Car number: " + car.getNumber() + " driver surname: " + driver.getSurname() +
+        return "Car number: " + carNumber + " driver surname: " + surname +
                 " date: " + date + " weight: " + weight + "kg distance: " + distance + "km" +
                 " cost: " + cost + "$ from: " + from + " to: " + to + " customs tax: " + customsTax + "$" +
                 " fuel cost: " + fuelCost + "$";
@@ -27,14 +23,14 @@ public class Orders extends Entity implements Serializable {
 
     @Override
     public String toString2() {
-       return number + " " + surname + " " + date + " " +
+       return carNumber + " " + surname + " " + date + " " +
                weight + " " + distance + " " + cost + " " +
                 from + " " + to + " " + customsTax + " " + fuelCost;
     }
 
-    public Orders(String args){
+    public Order(String args){
         String[] arrgs = args.split(" ");
-        number = Integer.parseInt(arrgs[0]);
+        carNumber = Integer.parseInt(arrgs[0]);
         surname = arrgs[1];
         date = arrgs[2];
         weight = Double.parseDouble(arrgs[3]);
@@ -46,11 +42,8 @@ public class Orders extends Entity implements Serializable {
         fuelCost = Double.parseDouble(arrgs[9]);
     }
 
-    public Orders(){}
-
     public Integer getNumber() {
-        return number;
+        return carNumber;
     }
 
-    public Integer getDriverNumber() { return driver.getNumber(); }
 }

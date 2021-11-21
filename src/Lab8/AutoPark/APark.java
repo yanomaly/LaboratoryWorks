@@ -1,18 +1,17 @@
 package Lab8.AutoPark;
 
-import Lab8.Entities.Cars;
-import Lab8.Entities.Drivers;
-import Lab8.Entities.Orders;
+import Lab8.Entities.Car;
+import Lab8.Entities.Driver;
+import Lab8.Entities.Order;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
-public class APark implements AutoPark, Serializable {
+public class APark implements AutoPark {
 
-    private static HashMap <Integer, Cars> cars = new HashMap<>();
-    private static HashMap <Integer, Drivers> drivers = new HashMap<>();
-    private static HashMap <Integer, Orders> orders = new HashMap<>();
+    private HashMap <Integer, Car> cars = new HashMap<>();
+    private HashMap <Integer, Driver> drivers = new HashMap<>();
+    private HashMap <Integer, Order> orders = new HashMap<>();
 
     @Override
     public void read() throws IOException {
@@ -20,29 +19,20 @@ public class APark implements AutoPark, Serializable {
         BufferedReader drivers_r = new BufferedReader(new FileReader("Drivers2.txt"));
         BufferedReader orders_r = new BufferedReader(new FileReader("Orders2.txt"));
         String car_temp = cars_r.readLine();
-        Cars temp;
         while(car_temp != null) {
-            temp = new Cars(car_temp);
-            cars.putIfAbsent(temp.getNumber(), temp);
+            cars.putIfAbsent(new Car(car_temp).getNumber(), new Car(car_temp));
             car_temp = cars_r.readLine();
         }
         String driver_temp = drivers_r.readLine();
-        Drivers tempd;
         while(driver_temp != null) {
-            tempd = new Drivers(driver_temp);
-            drivers.putIfAbsent(tempd.getNumber(), tempd);
-            driver_temp = cars_r.readLine();
+            drivers.putIfAbsent(new Driver(driver_temp).getNumber(), new Driver(driver_temp));
+            driver_temp = drivers_r.readLine();
         }
         String order_temp = orders_r.readLine();
-        Orders tempo;
         while(order_temp != null) {
-            tempo = new Orders(order_temp);
-            orders.putIfAbsent(tempo.getNumber() + tempo.getDriverNumber(), tempo);
+            orders.putIfAbsent(new Order(order_temp).getNumber(), new Order(order_temp));
             order_temp = orders_r.readLine();
         }
-        cars_r.close();
-        drivers_r.close();
-        orders_r.close();
     }
 
     @Override
@@ -55,15 +45,15 @@ public class APark implements AutoPark, Serializable {
         BufferedWriter cars_w2 = new BufferedWriter(new FileWriter("Cars2.txt"));
         BufferedWriter drivers_w2 = new BufferedWriter(new FileWriter("Drivers2.txt"));
         BufferedWriter orders_w2 = new BufferedWriter(new FileWriter("Orders2.txt"));
-        for (Cars temp: cars.values()) {
+        for (Car temp: cars.values()) {
             crs2 += temp.toString2() + "\n";
             crs1 += temp.toString1() + "\n";
         }
-        for (Drivers temp: drivers.values()) {
+        for (Driver temp: drivers.values()) {
             drvrs2 += temp.toString2() + "\n";
             drvrs1 += temp.toString1() + "\n";
         }
-        for (Orders temp: orders.values()) {
+        for (Order temp: orders.values()) {
             rdrs2 += temp.toString2() + "\n";
             rdrs1 += temp.toString1() + "\n";
         }
@@ -100,39 +90,178 @@ public class APark implements AutoPark, Serializable {
     }
 
     @Override
-    public void search(Object obj) {
-        System.out.println("sear");
+    public void search() {
+        System.out.println("Enter data in this way: car number, driver surname, date, weight, distance, cost from, to, customs tax, fuel cost \n" +
+                "if you dont know any information type unk instead of it:");
+        Scanner sc = new Scanner(System.in);
+        String data = sc.nextLine();
+        Vector<String> temp = new Vector<>(Arrays.asList(data.split(" ")));
+        temp.remove("unk");
+        String result = new String();
+        for (Order tmp: orders.values()) {
+            int flag = 0;
+            List<String> temp_sep = Arrays.asList(tmp.toString2().split(" "));
+            for (String tm: temp) {
+                if(temp_sep.indexOf(tm) >= 0)
+                    flag++;
+            }
+            if(flag == temp.size() && flag > 0)
+                result += tmp.toString1() + "\n";
+        }
+        if(result.compareTo("") != 0)
+        System.out.println("I find this orders:\n" + result);
+        else
+            System.out.println("Didn't find anything");
     }
 
     @Override
-    public void add(Object obj) {
-        System.out.println("add");
+    public void add(int param) {
+        switch (param) {
+            case (1):
+                System.out.println("Enter number, surname, category, experience," +
+                        " address, salary and birth date of driver:");
+                Scanner scd = new Scanner(System.in);
+                String datad = scd.nextLine();
+                if(!drivers.values().contains(new Driver(datad))){
+                    drivers.put(new Driver(datad).getNumber(), new Driver(datad));
+                    System.out.println("Added successfully!");
+                }
+                else System.out.println("Wrong input or driver already exists!");
+                break;
+            case(2):
+                System.out.println("Enter number, carrying, make, and mileage of car:");
+                Scanner scc = new Scanner(System.in);
+                String datac = scc.nextLine();
+                if(!cars.values().contains(new Car(datac))){
+                    cars.put(new Car(datac).getNumber(), new Car(datac));
+                    System.out.println("Added successfully!");
+                }
+                else System.out.println("Wrong input or car already exists!");
+                break;
+            case(3):
+                System.out.println("Enter car number, driver surname," +
+                        " date, weight, distance, cost from, to, customs tax, fuel cost");
+                Scanner sco = new Scanner(System.in);
+                String datao = sco.nextLine();
+                if(!orders.values().contains(new Order(datao))){
+                    orders.put(new Order(datao).getNumber(), new Order(datao));
+                    System.out.println("Added successfully!");
+                }
+                else System.out.println("Wrong input or order already exists!");
+                break;
+        }
     }
 
     @Override
-    public void delete(Object obj) {
-        System.out.println("del");
+    public void delete(int param) {
+        switch (param) {
+            case (1):
+                System.out.println("Enter number, surname, category, experience," +
+                        " address, salary and birth date of driver:");
+                Scanner scd = new Scanner(System.in);
+                String datad = scd.nextLine();
+                if(drivers.values().contains(new Driver(datad))){
+                    drivers.remove(new Driver(datad).getNumber(), new Driver(datad));
+                    System.out.println("Deleted successfully!");
+                }
+                else System.out.println("Wrong input or driver already deleted!");
+                break;
+            case(2):
+                System.out.println("Enter number, carrying, make, and mileage of car:");
+                Scanner scc = new Scanner(System.in);
+                String datac = scc.nextLine();
+                if(cars.values().contains(new Car(datac))){
+                    cars.put(new Car(datac).getNumber(), new Car(datac));
+                    System.out.println("Deleted successfully!");
+                }
+                else System.out.println("Wrong input or car already deleted!");
+                break;
+            case(3):
+                System.out.println("Enter car number, driver surname," +
+                        " date, weight, distance, cost from, to, customs tax, fuel cost");
+                Scanner sco = new Scanner(System.in);
+                String datao = sco.nextLine();
+                if(orders.values().contains(new Order(datao))){
+                    orders.put(new Order(datao).getNumber(), new Order(datao));
+                    System.out.println("Deleted successfully!");
+                }
+                else System.out.println("Wrong input or order already deleted!");
+                break;
+        }
     }
 
     @Override
-    public void change(Object obj) {
-        System.out.println("ch");
+    public void change(int param) {
+        switch (param) {
+            case (1):
+                System.out.println("Enter number, surname, category, experience," +
+                        " address, salary and birth date of driver:");
+                Scanner scd = new Scanner(System.in);
+                String datad = scd.nextLine();
+                if(drivers.values().contains(new Driver(datad))){
+                    System.out.println("Enter new data: ");
+                    String datadn = scd.nextLine();
+                    drivers.remove(new Driver(datad).getNumber(), new Driver(datad));
+                    drivers.put(new Driver(datadn).getNumber(), new Driver(datadn));
+                    System.out.println("Changed successfully!");
+                }
+                else System.out.println("Wrong input or driver didn't exists!");
+                break;
+            case(2):
+                System.out.println("Enter number, carrying, make, and mileage of car:");
+                Scanner scc = new Scanner(System.in);
+                String datac = scc.nextLine();
+                if(cars.values().contains(new Car(datac))){
+                    System.out.println("Enter new data: ");
+                    String datacn = scc.nextLine();
+                    cars.remove(new Car(datac).getNumber(), new Car(datac));
+                    cars.put(new Car(datacn).getNumber(), new Car(datacn));
+                    System.out.println("Changed successfully!");
+                }
+                else System.out.println("Wrong input or car didn't exists!");
+                break;
+            case(3):
+                System.out.println("Enter car number, driver surname," +
+                        " date, weight, distance, cost from, to, customs tax, fuel cost");
+                Scanner sco = new Scanner(System.in);
+                String datao = sco.nextLine();
+                if(orders.values().contains(new Order(datao))){
+                    System.out.println("Enter new data: ");
+                    String dataon = sco.nextLine();
+                    orders.remove(new Order(datao).getNumber(), new Order(datao));
+                    orders.put(new Order(dataon).getNumber(), new Order(dataon));
+                    System.out.println("Changed successfully!");
+                }
+                else System.out.println("Wrong input or order didn't exists!");
+                break;
+        }
     }
 
     @Override
-    public void show(Object obj) {
-
+    public void show(int param) {
+        if(param == 2){
+            System.out.println("Cars list: ");
+            for (Car temp: cars.values()) {
+                System.out.println(temp.toString1() + '\n');
+            }
+        }
+        if(param == 1){
+            System.out.println("Drivers list: ");
+            for (Driver temp: drivers.values()) {
+                System.out.println(temp.toString1() + '\n');
+            }
+        }
     }
 
-    public HashMap<Integer, Cars> getCars() {
+    public HashMap<Integer, Car> getCars() {
         return cars;
     }
 
-    public HashMap<Integer, Drivers> getDrivers() {
+    public HashMap<Integer, Driver> getDrivers() {
         return drivers;
     }
 
-    public HashMap<Integer, Orders> getOrders() {
+    public HashMap<Integer, Order> getOrders() {
         return orders;
     }
 
@@ -156,7 +285,7 @@ public class APark implements AutoPark, Serializable {
                 System.out.println("To add order press 1 \n" +
                         "To delete order press 2 \n" +
                         "To change order press 3 \n" +
-                        "To show orders list press 4 \n" +
+                        "To search order press 4 \n" +
                         "To go to main menu press 0 \n");
                 break;
             default:
@@ -176,8 +305,8 @@ public class APark implements AutoPark, Serializable {
         String command = sc.next();
         switch (Integer.parseInt(command)){
             case(0):
-                ser_w();
                 write();
+                ser_w();
                 System.exit(0);
                 break;
             case(1):
@@ -189,19 +318,19 @@ public class APark implements AutoPark, Serializable {
                         menu();
                         break;
                     case(1):
-                        add(drivers);
+                        add(1);
                         menu();
                         break;
                     case(2):
-                        delete(drivers);
+                        delete(1);
                         menu();
                         break;
                     case(3):
-                        change(drivers);
+                        change(1);
                         menu();
                         break;
                     case(4):
-                        show(drivers);
+                        show(1);
                         menu();
                         break;
                 }
@@ -215,19 +344,19 @@ public class APark implements AutoPark, Serializable {
                         menu();
                         break;
                     case(1):
-                        add(cars);
+                        add(2);
                         menu();
                         break;
                     case(2):
-                        delete(cars);
+                        delete(2);
                         menu();
                         break;
                     case(3):
-                        change(cars);
+                        change(2);
                         menu();
                         break;
                     case(4):
-                        show(cars);
+                        show(2);
                         menu();
                         break;
                 }
@@ -241,19 +370,19 @@ public class APark implements AutoPark, Serializable {
                         menu();
                         break;
                     case(1):
-                        add(orders);
+                        add(3);
                         menu();
                         break;
                     case(2):
-                        delete(orders);
+                        delete(3);
                         menu();
                         break;
                     case(3):
-                        change(orders);
+                        change(3);
                         menu();
                         break;
                     case(4):
-                        show(orders);
+                        search();
                         menu();
                         break;
                 }
