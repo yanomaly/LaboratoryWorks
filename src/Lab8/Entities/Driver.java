@@ -25,6 +25,15 @@ public class Driver extends Entity {
                  birthday;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Driver driver = (Driver) o;
+        return number.compareTo(driver.number) == 0 && surname.compareTo(driver.surname) == 0 &&
+                category.compareTo(driver.category) == 0 && experience.compareTo(driver.experience) == 0 &&
+                address.compareTo(driver.address) == 0 && salary.compareTo(driver.salary) == 0 &&
+                birthday.compareTo(driver.birthday) == 0;
+    }
+
     public String getSurname() {
         return surname;
     }

@@ -28,6 +28,16 @@ public class Order extends Entity {
                 from + " " + to + " " + customsTax + " " + fuelCost;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Order order = (Order) o;
+        return carNumber.compareTo(order.carNumber) == 0 && surname.compareTo(order.surname) == 0 &&
+                date.compareTo(order.date) == 0 && weight.compareTo(order.weight) == 0 &&
+                distance.compareTo(order.distance) == 0 && cost.compareTo(order.cost) == 0 &&
+                from.compareTo(order.from) == 0 && to.compareTo(order.to) == 0 &&
+                customsTax.compareTo(order.customsTax) == 0 && fuelCost.compareTo(order.fuelCost) == 0;
+    }
+
     public Order(String args){
         String[] arrgs = args.split(" ");
         carNumber = Integer.parseInt(arrgs[0]);

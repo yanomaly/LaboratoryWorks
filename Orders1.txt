@@ -1,0 +1,3 @@
+Car number: 1212 driver surname: Толстой date: 20.11.2021 weight: 1000.0kg distance: 29.0km cost: 95.0$ from: Минск to: Гродно customs tax: 0.0$ fuel cost: 50.0$
+Car number: 1213 driver surname: Толстой date: 20.11.2021 weight: 1000.0kg distance: 29.0km cost: 95.0$ from: Минск to: Гродно customs tax: 10.0$ fuel cost: 50.0$
+Car number: 1214 driver surname: Толстой date: 20.11.2021 weight: 1000.0kg distance: 29.0km cost: 95.0$ from: Минск to: Гродно customs tax: 0.0$ fuel cost: 250.0$

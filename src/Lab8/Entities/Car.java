@@ -19,6 +19,14 @@ public class Car extends Entity {
                 make + " " + stock_mileage;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Car car = (Car) o;
+        return  number.compareTo(car.number) == 0 && carrying.compareTo(car.carrying) == 0 &&
+                 make.compareTo(car.make) == 0 && stock_mileage.compareTo(car.stock_mileage) == 0;
+    }
+
+
     public Integer getNumber() {
         return number;
     }

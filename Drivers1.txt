@@ -1,0 +1,2 @@
+Number: 1929 surname: Угга category: A experience: 1 years address: Жопа salary: 1000.0$ birthday: 10.01.2005
+Number: 1919 surname: Толстой category: B experience: 1 years address: Жопа salary: 1000.0$ birthday: 10.01.2003
