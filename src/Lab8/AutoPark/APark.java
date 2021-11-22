@@ -13,6 +13,11 @@ public class APark implements AutoPark {
     private HashMap <Integer, Driver> drivers = new HashMap<>();
     private HashMap <Integer, Order> orders = new HashMap<>();
 
+    public APark() throws IOException, ClassNotFoundException {
+        ser_r();
+        read();
+    }
+
     @Override
     public void read() throws IOException {
         BufferedReader cars_r = new BufferedReader(new FileReader("Cars2.txt"));
@@ -171,7 +176,7 @@ public class APark implements AutoPark {
                 Scanner scc = new Scanner(System.in);
                 String datac = scc.nextLine();
                 if(cars.values().contains(new Car(datac))){
-                    cars.put(new Car(datac).getNumber(), new Car(datac));
+                    cars.remove(new Car(datac).getNumber(), new Car(datac));
                     System.out.println("Deleted successfully!");
                 }
                 else System.out.println("Wrong input or car already deleted!");
@@ -182,7 +187,7 @@ public class APark implements AutoPark {
                 Scanner sco = new Scanner(System.in);
                 String datao = sco.nextLine();
                 if(orders.values().contains(new Order(datao))){
-                    orders.put(new Order(datao).getNumber(), new Order(datao));
+                    orders.remove(new Order(datao).getNumber(), new Order(datao));
                     System.out.println("Deleted successfully!");
                 }
                 else System.out.println("Wrong input or order already deleted!");
@@ -297,9 +302,7 @@ public class APark implements AutoPark {
         }
     }
 
-    public void menu() throws IOException, ClassNotFoundException {
-        ser_r();
-        read();
+    public void menu() throws IOException {
         show_menu(0);
         Scanner sc = new Scanner(System.in);
         String command = sc.next();

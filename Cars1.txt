@@ -1,1 +1,10 @@
-Number: 1212 carrying: 2000.0kg make: лада mileage: 215
+Number: 3457 carrying: 2000.0kg make: рено mileage: 9000
+Number: 1298 carrying: 3000.0kg make: пежо mileage: 45
+Number: 5172 carrying: 1000.0kg make: ман mileage: 0
+Number: 7845 carrying: 1700.9kg make: вольво mileage: 2015
+Number: 1112 carrying: 3000.0kg make: маз mileage: 2115
+Number: 6521 carrying: 1000.0kg make: камаз mileage: 215
+Number: 9801 carrying: 5500.0kg make: фольксваген mileage: 1215
+Number: 1212 carrying: 2000.0kg make: лада mileage: 15
+Number: 1100 carrying: 5950.0kg make: вольво mileage: 12624
+Number: 6606 carrying: 3500.5kg make: фольксваген mileage: 0

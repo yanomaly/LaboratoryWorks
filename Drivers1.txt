@@ -1,2 +1,10 @@
-Number: 1929 surname: Угга category: A experience: 1 years address: Жопа salary: 1000.0$ birthday: 10.01.2005
-Number: 1919 surname: Толстой category: B experience: 1 years address: Жопа salary: 1000.0$ birthday: 10.01.2003
+Number: 192 surname: Морозов category: С experience: 1 years address: г.Минск,пр.Ленина salary: 2000.0$ birthday: 10.01.1978
+Number: 929 surname: Подбейколода category: В experience: 1 years address: г.Орша,ул.Мира salary: 1900.0$ birthday: 01.01.1965
+Number: 129 surname: Григорьев category: С experience: 1 years address: г.Жлобин,пр.Независимости salary: 1980.5$ birthday: 10.01.1955
+Number: 1 surname: Толстой category: B experience: 1 years address: г.Мир,ул.Горецкого salary: 1070.7$ birthday: 10.01.2003
+Number: 2 surname: Данилюк category: A experience: 1 years address: г.Мир,пр.Победителей salary: 1600.1$ birthday: 10.01.1999
+Number: 19 surname: Кунц category: С experience: 1 years address: г.Брест,ул.Одоевского salary: 900.0$ birthday: 10.01.1989
+Number: 199 surname: Трунь category: В experience: 1 years address: г.Минск,ул.Пушкина salary: 1050.0$ birthday: 10.01.1991
+Number: 1929 surname: Данилюк category: A experience: 1 years address: г.Минск,ул.Грицевца salary: 1000.0$ birthday: 10.01.1995
+Number: 9 surname: Тёркин category: В experience: 1 years address: г.Осиповичи,ул.Семашко salary: 700.5$ birthday: 10.01.1990
+Number: 1529 surname: Петров category: В experience: 1 years address: г.Борисов,ул.Толстого salary: 1000.12$ birthday: 12.01.1982

@@ -1,3 +1,10 @@
-Car number: 1212 driver surname: Толстой date: 20.11.2021 weight: 1000.0kg distance: 29.0km cost: 95.0$ from: Минск to: Гродно customs tax: 0.0$ fuel cost: 50.0$
-Car number: 1213 driver surname: Толстой date: 20.11.2021 weight: 1000.0kg distance: 29.0km cost: 95.0$ from: Минск to: Гродно customs tax: 10.0$ fuel cost: 50.0$
-Car number: 1214 driver surname: Толстой date: 20.11.2021 weight: 1000.0kg distance: 29.0km cost: 95.0$ from: Минск to: Гродно customs tax: 0.0$ fuel cost: 250.0$
+Car number: 3457 driver surname: Толстой date: 20.11.2021 weight: 800.0kg distance: 150.0km cost: 95.0$ from: Минск to: Гродно customs tax: 0.0$ fuel cost: 20.0$
+Car number: 5172 driver surname: Петров date: 20.11.2021 weight: 2000.2kg distance: 156.4km cost: 93.1$ from: Гданьск to: Брест customs tax: 20.0$ fuel cost: 21.0$
+Car number: 7845 driver surname: Тёркин date: 20.11.2021 weight: 1090.3kg distance: 280.0km cost: 193.4$ from: Минск to: Москва customs tax: 0.0$ fuel cost: 168.0$
+Car number: 1112 driver surname: Подбейколода date: 20.11.2021 weight: 1200.0kg distance: 170.0km cost: 100.4$ from: Минск to: Вильнюс customs tax: 10.0$ fuel cost: 25.0$
+Car number: 6521 driver surname: Данилюк date: 20.11.2021 weight: 1500.0kg distance: 230.0km cost: 150.6$ from: Минск to: Витебск customs tax: 0.0$ fuel cost: 150.5$
+Car number: 9801 driver surname: Кунц date: 20.11.2021 weight: 2000.15kg distance: 256.7km cost: 174.0$ from: Мир to: Орша customs tax: 0.0$ fuel cost: 145.7$
+Car number: 1212 driver surname: Морозов date: 20.11.2021 weight: 600.6kg distance: 268.8km cost: 186.9$ from: Санкт-Петербург to: Кричев customs tax: 0.0$ fuel cost: 156.0$
+Car number: 1100 driver surname: Трунь date: 20.11.2021 weight: 70.5kg distance: 57.7km cost: 31.0$ from: Минск to: Пуховичи customs tax: 0.0$ fuel cost: 10.0$
+Car number: 1213 driver surname: Григорьев date: 20.11.2021 weight: 1243.7kg distance: 366.7km cost: 298.5$ from: Москва to: Тракай customs tax: 50.0$ fuel cost: 200.7$
+Car number: 6606 driver surname: Толстой date: 20.11.2021 weight: 750.5kg distance: 294.5km cost: 200.6$ from: Лодзь to: Смоленск customs tax: 35.0$ fuel cost: 170.9$
