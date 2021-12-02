@@ -101,6 +101,7 @@ public class APark implements AutoPark {
         Scanner sc = new Scanner(System.in);
         String data = sc.nextLine();
         Vector<String> temp = new Vector<>(Arrays.asList(data.split(" ")));
+        while(temp.indexOf("unk") >= 0)
         temp.remove("unk");
         String result = new String();
         for (Order tmp: orders.values()) {
